@@ -56,13 +56,7 @@ if os.path.exists(file_path):
 
     predictions = pd.DataFrame({'Actual': y_test.values, 'Predicted': linear_y_pred})
     predictions.to_csv('./result/linear_predictions_2024.csv', index=False)
-
-
-    # RMSE: 406.58781622461163
-    # R2: -0.022576591298384185
-    # actual value: [1043.49, 610.01, 1196.75, 629.67, 759.23]
-    # predicted value: [795.21, 768.59, 776.11, 776.11, 768.59]
-
+    
     # Random Forest Model
     random_forest_model = train_random_forest(X_train, y_train, n_estimators=200, max_depth=10)
     save_model(random_forest_model, './models/save_models/random_forest_model.pkl')
