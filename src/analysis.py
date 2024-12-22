@@ -18,18 +18,18 @@ if os.path.exists(file_path):
     global_trends.columns = ['Year', 'Total_Energy_Usage_kWh']
     # print(global_trends)
 
-    # plt.figure(figsize=(10, 6))
-    # plt.plot(global_trends['Year'], global_trends['Total_Energy_Usage_kWh'], marker='o', linestyle='-', color='b')
-    # plt.title('Global Trends of Renewable Energy Usage (2020-2024)', fontsize=16)
-    # plt.xlabel('Year', fontsize=14)
-    # plt.ylabel('Total Energy Usage (kWh)', fontsize=14)
-    # plt.grid(True)
-    # plt.xticks(global_trends['Year'])
-    # plt.tight_layout()
+    plt.figure(figsize=(10, 6))
+    plt.plot(global_trends['Year'], global_trends['Total_Energy_Usage_kWh'], marker='o', linestyle='-', color='b')
+    plt.title('Global Trends of Renewable Energy Usage (2020-2024)', fontsize=16)
+    plt.xlabel('Year', fontsize=14)
+    plt.ylabel('Total Energy Usage (kWh)', fontsize=14)
+    plt.grid(True)
+    plt.xticks(global_trends['Year'])
+    plt.tight_layout()
     
 
-    # os.makedirs('../figures', exist_ok=True)
-    # plt.savefig('../figures/global_renewable_energy_usage.png', dpi=300, bbox_inches='tight')
+    os.makedirs('../figures', exist_ok=True)
+    plt.savefig('../figures/global_renewable_energy_usage.png', dpi=300, bbox_inches='tight')
     # plt.show()
 
     ## Regional Energy Usage Analysis
@@ -39,15 +39,15 @@ if os.path.exists(file_path):
 
     # print(region_usage)
 
-    # plt.figure(figsize=(12, 6))
-    # sns.barplot(data=region_usage, x='Region', y='Total_Energy_Usage_kWh', palette='viridis')
-    # plt.title('Energy Usage by Region (2020-2024)', fontsize=16)
-    # plt.xlabel('Region', fontsize=14)
-    # plt.ylabel('Total Energy Usage (kWh)', fontsize=14)
-    # plt.xticks(rotation=45)
-    # plt.tight_layout()
-    # plt.savefig('../figures/energy_usage_by_region.png', dpi=300, bbox_inches='tight')
-    # plt.show()
+    plt.figure(figsize=(12, 6))
+    sns.barplot(data=region_usage, x='Region', y='Total_Energy_Usage_kWh', palette='viridis')
+    plt.title('Energy Usage by Region (2020-2024)', fontsize=16)
+    plt.xlabel('Region', fontsize=14)
+    plt.ylabel('Total Energy Usage (kWh)', fontsize=14)
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig('../figures/energy_usage_by_region.png', dpi=300, bbox_inches='tight')
+    plt.show()
 
 
     ## Energy Type Usage Trend Analysis
