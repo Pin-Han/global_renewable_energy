@@ -1,5 +1,20 @@
 # Global Energy Usage Analysis Report
 
+## Table of Contents
+
+- [Global Energy Usage Analysis Report](#global-energy-usage-analysis-report)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Trend Analysis](#trend-analysis)
+    - [1. Global Energy Usage Trend Line Chart](#1-global-energy-usage-trend-line-chart)
+    - [2. Energy Usage by Region Bar Chart](#2-energy-usage-by-region-bar-chart)
+    - [3. Energy Type Distribution Trends](#3-energy-type-distribution-trends)
+  - [Key Findings](#key-findings)
+  - [Predictive Modeling](#predictive-modeling)
+    - [Model Comparison](#model-comparison)
+  - [Data Source](#data-source)
+  - [Methodology](#methodology)
+
 ## Overview
 
 This analysis is based on the Global Renewable Energy Usage dataset from Kaggle (2020-2024), examining three key aspects:
@@ -12,7 +27,7 @@ This analysis is based on the Global Renewable Energy Usage dataset from Kaggle 
 
 ### 1. Global Energy Usage Trend Line Chart
 
-![Global Energy Usage Trend](./figures/global_renewable_energy_usage.png)
+<img src="./figures/global_renewable_energy_usage.png" width="600" alt="Global Energy Usage Trend">
 
 Key observations:
 
@@ -23,7 +38,7 @@ Key observations:
 
 ### 2. Energy Usage by Region Bar Chart
 
-![Energy Usage Distribution by Region](./figures/energy_usage_by_region.png)
+<img src="./figures/energy_usage_by_region.png" width="600" alt="Energy Usage Distribution by Region">
 
 Regional insights:
 
@@ -34,7 +49,7 @@ Regional insights:
 
 ### 3. Energy Type Distribution Trends
 
-![Energy Type Usage Trends](./figures/energy_usage_trends_by_type.png)
+<img src="./figures/energy_usage_trends_by_type.png" width="600" alt="Energy Type Usage Trends">
 
 Energy mix findings:
 
@@ -61,6 +76,20 @@ Energy mix findings:
    - Traditional energy sources show gradual decline in usage share
    - Diversification of energy sources indicates positive trend towards sustainability
 
+## Predictive Modeling
+
+### Model Comparison
+
+Three machine learning models were implemented to predict future energy usage patterns:
+
+- Linear Regression [R-squared: 0.5842838684930511]
+- Random Forest [R-squared: 0.7164419031828511]
+- XGBoost [R-squared: 0.6324273918222492]
+
+<img src="./figures/prediction_comparison_plot.png" width="600" alt="Model Prediction Comparison">
+
+After comparative analysis, the Random Forest model demonstrated superior performance in predicting energy usage patterns, showing better accuracy and reliability compared to other models.
+
 ## Data Source
 
 - Dataset: Global Renewable Energy Usage 2020-2024
@@ -70,5 +99,3 @@ Energy mix findings:
 ## Methodology
 
 - Data processing and visualization using Python (Pandas, Matplotlib)
-- Analysis conducted using statistical time series analysis and comparative regional studies
-- Data cleaning and validation performed using industry standard practices
