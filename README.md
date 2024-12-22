@@ -11,7 +11,10 @@
     - [3. Energy Type Distribution Trends](#3-energy-type-distribution-trends)
   - [Key Findings](#key-findings)
   - [Predictive Modeling](#predictive-modeling)
+    - [Prediction Target](#prediction-target)
+    - [Feature Engineering](#feature-engineering)
     - [Model Comparison](#model-comparison)
+    - [Model Training Methodology](#model-training-methodology)
   - [Data Source](#data-source)
   - [Methodology](#methodology)
 
@@ -78,6 +81,25 @@ Energy mix findings:
 
 ## Predictive Modeling
 
+Our predictive analysis focused on forecasting future renewable energy consumption based on historical patterns and multiple features.
+
+### Prediction Target
+
+- Annual renewable energy consumption (in kWh)
+- Forecast horizon: Next year ahead
+
+### Feature Engineering
+
+Key features used in the prediction models:
+
+- Historical energy consumption (previous years)
+- Regional indicators
+- Economic indicators (Income_Level)
+- Household characteristics (Household_Size, Urban_Rural)
+- Energy type distribution
+- Adoption history (Adoption_Year)
+- Subsidy status
+
 ### Model Comparison
 
 Three machine learning models were implemented to predict future energy usage patterns:
@@ -86,9 +108,34 @@ Three machine learning models were implemented to predict future energy usage pa
 - Random Forest [R-squared: 0.7164419031828511]
 - XGBoost [R-squared: 0.6324273918222492]
 
+Key Features Used in Models:
+
+1. Energy Source Types (One-hot encoded)
+
+   - Derived from different renewable energy categories
+   - Includes: Geothermal, Hydro, Solar, Wind
+
+2. Energy Per Household
+
+   - Calculated as: Monthly Usage (kWh) / Household Size
+   - Provides normalized energy consumption metrics
+   - Helps account for household size variations
+
+3. Yearly Change
+   - Measures annual energy usage variations
+   - Captures temporal trends and seasonal patterns
+   - Calculated using year-over-year differences in monthly usage
+
 <img src="./figures/prediction_comparison_plot.png" width="600" alt="Model Prediction Comparison">
 
 After comparative analysis, the Random Forest model demonstrated superior performance in predicting energy usage patterns, showing better accuracy and reliability compared to other models.
+
+### Model Training Methodology
+
+- Data split: 80% training, 20% testing
+- Cross-validation: 5-fold
+- Hyperparameter tuning: Grid search with cross-validation
+- Evaluation metrics: R-squared, RMSE, MAE
 
 ## Data Source
 
