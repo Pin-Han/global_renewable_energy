@@ -12,11 +12,11 @@ if os.path.exists(file_path):
     data.to_csv('../data/processed/cleaned_data.csv', index=False)
 
 
-    # Global Trends Analysis
+    ## Global Trends Analysis
 
     global_trends = data.groupby('Year')['Monthly_Usage_kWh'].sum().reset_index()
     global_trends.columns = ['Year', 'Total_Energy_Usage_kWh']
-    print(global_trends)
+    # print(global_trends)
 
     # plt.figure(figsize=(10, 6))
     # plt.plot(global_trends['Year'], global_trends['Total_Energy_Usage_kWh'], marker='o', linestyle='-', color='b')
@@ -32,21 +32,36 @@ if os.path.exists(file_path):
     # plt.savefig('../figures/global_renewable_energy_usage.png', dpi=300, bbox_inches='tight')
     # plt.show()
 
-    # Regional Energy Usage Analysis
+    ## Regional Energy Usage Analysis
     region_usage = data.groupby('Region')['Monthly_Usage_kWh'].sum().reset_index()
     region_usage.columns = ['Region', 'Total_Energy_Usage_kWh']
     region_usage = region_usage.sort_values(by='Total_Energy_Usage_kWh', ascending=False)
 
-    print(region_usage)
+    # print(region_usage)
 
-    plt.figure(figsize=(12, 6))
-    sns.barplot(data=region_usage, x='Region', y='Total_Energy_Usage_kWh', palette='viridis')
-    plt.title('Energy Usage by Region (2020-2024)', fontsize=16)
-    plt.xlabel('Region', fontsize=14)
-    plt.ylabel('Total Energy Usage (kWh)', fontsize=14)
-    plt.xticks(rotation=45)
+    # plt.figure(figsize=(12, 6))
+    # sns.barplot(data=region_usage, x='Region', y='Total_Energy_Usage_kWh', palette='viridis')
+    # plt.title('Energy Usage by Region (2020-2024)', fontsize=16)
+    # plt.xlabel('Region', fontsize=14)
+    # plt.ylabel('Total Energy Usage (kWh)', fontsize=14)
+    # plt.xticks(rotation=45)
+    # plt.tight_layout()
+    # plt.savefig('../figures/energy_usage_by_region.png', dpi=300, bbox_inches='tight')
+    # plt.show()
+
+
+    ## Energy Type Usage Trend Analysis
+    type_trends = data.groupby(['Year', 'Energy_Source'])['Monthly_Usage_kWh'].sum().unstack()
+    print(type_trends)
+    type_trends.plot(kind='line', marker='o')
+    plt.title("Energy Usage Trends by Type (2020-2024)", fontsize=16)
+    plt.xlabel("Year", fontsize=14)
+    plt.ylabel("Total Energy Usage (kWh)", fontsize=14)
+    plt.legend(title='Energy Source', fontsize=10)
+    plt.grid(True)
     plt.tight_layout()
-    plt.savefig('../figures/energy_usage_by_region.png', dpi=300, bbox_inches='tight')
+    plt.savefig('../figures/energy_usage_trends_by_type.png', dpi=300, bbox_inches='tight')
     plt.show()
+
 else:
     print(f"File not found at: {file_path}")
