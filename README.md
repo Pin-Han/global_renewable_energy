@@ -132,10 +132,20 @@ After comparative analysis, the Random Forest model demonstrated superior perfor
 
 ### Model Training Methodology
 
-- Data split: 80% training, 20% testing
-- Cross-validation: 5-fold
-- Hyperparameter tuning: Grid search with cross-validation
-- Evaluation metrics: R-squared, RMSE, MAE
+1. Data split:
+
+   - Training data: 2020-2023
+   - Testing data: 2024
+   - Time-based split to simulate real forecasting scenario
+
+2. Model Parameters:
+
+   - Random Forest: n_estimators=200, max_depth=10
+   - XGBoost: n_estimators=200, learning_rate=0.1, max_depth=6
+
+3. Evaluation metrics:
+   - R-squared (R²): Measures the proportion of variance in the dependent variable explained by the model
+   - RMSE (Root Mean Square Error): Measures the standard deviation of prediction errors
 
 ## Data Source
 
