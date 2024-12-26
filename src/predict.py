@@ -82,15 +82,49 @@ if os.path.exists(file_path):
     })
     predictions.to_csv('./result/predictions_comparison_2024.csv', index=False)
     # Visualization
-    plt.figure(figsize=(10, 6))
-    plt.plot(y_test.values, label="Actual", marker='o')
-    plt.plot(linear_y_pred, label="Linear Predicted", linestyle='--')
-    plt.plot(random_forest_y_pred, label="Random Forest Predicted", linestyle='--')
-    plt.plot(xgb_y_pred, label="XGBoost Predicted", linestyle='--')
-    plt.legend()
-    plt.title("Actual vs Predicted Values")
-    plt.xlabel("Sample Index")
-    plt.ylabel("Monthly Usage (kWh)")
-    plt.grid(True)
-    plt.savefig('./result/prediction_comparison_plot.png')
+    plt.figure(figsize=(12, 6))
+    
+    # Get unique months for plotting
+    unique_months = y_test.groupby(data_prepared[data_prepared['Year'] == 2024]['Month']).mean()
+    
+    # Plot actual values
+    plt.plot(range(len(unique_months)), unique_months.values, 
+            label="Actual", marker='o', linewidth=2, markersize=8)
+    
+    # Calculate monthly averages for predictions
+    linear_monthly = pd.Series(linear_y_pred).groupby(data_prepared[data_prepared['Year'] == 2024]['Month']).mean()
+    rf_monthly = pd.Series(random_forest_y_pred).groupby(data_prepared[data_prepared['Year'] == 2024]['Month']).mean()
+    xgb_monthly = pd.Series(xgb_y_pred).groupby(data_prepared[data_prepared['Year'] == 2024]['Month']).mean()
+    
+    # Plot predictions with different styles
+    plt.plot(range(len(linear_monthly)), linear_monthly, 
+            label=f"Linear (R² = {linear_r2:.3f})", 
+            linestyle='--', marker='^', alpha=0.7)
+    plt.plot(range(len(rf_monthly)), rf_monthly, 
+            label=f"Random Forest (R² = {random_forest_r2:.3f})", 
+            linestyle='--', marker='s', alpha=0.7)
+    plt.plot(range(len(xgb_monthly)), xgb_monthly, 
+            label=f"XGBoost (R² = {xgb_r2:.3f})", 
+            linestyle='--', marker='D', alpha=0.7)
+
+    plt.title("Model Predictions vs Actual Monthly Usage (2024)", fontsize=12, pad=20)
+    plt.xlabel("Month (2024)", fontsize=10)
+    plt.ylabel("Monthly Usage (kWh)", fontsize=10)
+    
+    # Add month labels on x-axis
+    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    plt.xticks(range(12), months, rotation=45)
+    
+    # Add grid for better readability
+    plt.grid(True, linestyle='--', alpha=0.7)
+    
+    # Adjust legend
+    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+    
+    # Adjust layout to prevent label cutoff
+    plt.tight_layout()
+    
+    plt.savefig('./result/prediction_comparison_plot.png', 
+                dpi=300, bbox_inches='tight')
     plt.show()

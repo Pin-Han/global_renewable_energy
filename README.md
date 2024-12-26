@@ -1,158 +1,106 @@
-# Global Energy Usage Analysis Report
+# 全球再生能源採用趨勢分析
 
-## Table of Contents
+## 研究目標
 
-- [Global Energy Usage Analysis Report](#global-energy-usage-analysis-report)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Trend Analysis](#trend-analysis)
-    - [1. Global Energy Usage Trend Line Chart](#1-global-energy-usage-trend-line-chart)
-    - [2. Energy Usage by Region Bar Chart](#2-energy-usage-by-region-bar-chart)
-    - [3. Energy Type Distribution Trends](#3-energy-type-distribution-trends)
-  - [Key Findings](#key-findings)
-  - [Predictive Modeling](#predictive-modeling)
-    - [Prediction Target](#prediction-target)
-    - [Feature Engineering](#feature-engineering)
-    - [Model Comparison](#model-comparison)
-    - [Model Training Methodology](#model-training-methodology)
-  - [Data Source](#data-source)
-  - [Methodology](#methodology)
+分析不同國家和地區再生能源的採用趨勢，以了解全球再生能源發展現況。
 
-## Overview
+## 主要發現
 
-This analysis is based on the Global Renewable Energy Usage dataset from Kaggle (2020-2024), examining three key aspects:
+### 1. 地區能源結構差異
 
-1. Annual energy consumption trends
-2. Regional energy usage distribution
-3. Energy type utilization patterns
+- **北美地區**: 以太陽能和風能為主，能源多樣性指數較高
+- **歐洲**: 能源組合最為多元化，風能佔比較高
+- **亞洲**: 水力發電佔比較大，但太陽能快速增長
+- **澳洲**: 地熱能源使用比例較高，反映其獨特的地理優勢
+- **非洲**: 太陽能佔主導地位，能源多樣性指數較低
 
-## Trend Analysis
+### 2. 時間趨勢分析 (2020-2024)
 
-### 1. Global Energy Usage Trend Line Chart
+- **高成長地區**:
+  - 歐洲 (年均增長率 14.61%)
+  - 澳洲 (年均增長率 5.48%)
+- **負成長地區**:
+  - 北美 (年均增長率 -9.05%)
+  - 亞洲 (年均增長率 -2.45%)
+- **成長波動性**:
+  - 最穩定: 亞洲 (標準差: 13.99%)、北美 (標準差: 13.30%)
+  - 最不穩定: 澳洲 (標準差: 41.66%)、南美 (標準差: 38.54%)
 
-<img src="./figures/global_renewable_energy_usage.png" width="600" alt="Global Energy Usage Trend">
+### 3. 能源多樣性評估
 
-Key observations:
+- **高多樣性地區** (Shannon 指數 > 1.60):
+  - 澳洲 (1.608)
+  - 南美 (1.600)
+- **中等多樣性地區** (Shannon 指數 1.58-1.60):
+  - 北美 (1.594)
+  - 非洲 (1.589)
+  - 亞洲 (1.587)
+- **低多樣性地區** (Shannon 指數 < 1.58):
+  - 歐洲 (1.577)
 
-- Peak energy consumption recorded in 2023
-- Notable upward trend from 2020 onwards
-- Significant decline observed in 2024
-- Fluctuations correlate with global economic conditions
+### 4. 能源結構特徵
 
-### 2. Energy Usage by Region Bar Chart
+- **風能主導地區**:
+  - 非洲 (佔比 26.80%)
+  - 亞洲 (佔比 28.20%)
+  - 歐洲 (佔比 25.87%)
+  - 南美 (佔比 24.38%)
+- **其他主導能源地區**:
+  - 北美: 太陽能 (佔比 25.15%)
+  - 澳洲: 水力發電 (佔比 21.78%)
 
-<img src="./figures/energy_usage_by_region.png" width="600" alt="Energy Usage Distribution by Region">
+## 關鍵結論
 
-Regional insights:
+1. **地區差異性**
 
-- Europe leads in renewable energy consumption
-- Africa and South America show strong adoption rates
-- Relatively balanced distribution across regions
-- Australia, despite lower total usage, maintains competitive per capita consumption
+   - 能源結構選擇與地理條件高度相關
+   - 經濟發展水平影響能源多樣性
 
-### 3. Energy Type Distribution Trends
+2. **發展趨勢**
 
-<img src="./figures/energy_usage_trends_by_type.png" width="600" alt="Energy Type Usage Trends">
+   - 整體呈現穩定上升趨勢
+   - 成長率和穩定性存在地區差異
 
-Energy mix findings:
+3. **轉型特徵**
+   - 發達地區：多元化、穩定性高
+   - 發展中地區：快速成長、波動較大
 
-- Wind and Solar energy usage fluctuated significantly, but remained dominant overall.
-- Geothermal energy saw a significant increase in 2023, but usage remained stable in other years.
-- Biomass usage peaked in 2022 and then slightly decreased.
-- Hydroelectric power usage remained relatively stable.
+## 視覺化圖表
 
-## Key Findings
+1. 各地區能源結構 組成
+   <img src="./output/figures/region_analysis/energy_composition.png" width="600" alt="Energy Usage Distribution by Region">
+2. 2020-2024 年使用量趨勢
+   <img src="./output/figures/region_analysis/time_series_trends.png" width="600" alt="Energy Usage Distribution by Region">
+3. 能源結構轉型分析
+   <img src="./output/figures/region_analysis/energy_transition.png" width="600" alt="Energy Usage Distribution by Region">
 
-1. Temporal Patterns:
+## 統計數據表
 
-   - Overall upward trend in global energy usage
-   - Significant year-over-year variations
+### 1. 地區總用電量及主導能源
 
-2. Regional Distribution:
+| 地區 | 總用電量 (kWh) | 主導能源類型 | 主導能源佔比 |
+| ---- | -------------- | ------------ | ------------ |
+| 歐洲 | 137,107.45     | 風能         | 25.87%       |
+| 非洲 | 129,967.09     | 風能         | 26.80%       |
+| 南美 | 129,382.83     | 風能         | 24.38%       |
+| 北美 | 122,591.56     | 太陽能       | 25.15%       |
+| 澳洲 | 121,122.63     | 水力         | 21.78%       |
+| 亞洲 | 127,153.97     | 風能         | 28.20%       |
 
-   - Europe maintains leadership in energy consumption
-   - Balanced global development in energy usage
+### 2. 地區成長統計
 
-3. Energy Type Evolution:
-   - Renewable energy sources show increasing dominance in the global energy mix
-   - Wind and solar energy emerged as leading renewable sources
-   - Traditional energy sources show gradual decline in usage share
-   - Diversification of energy sources indicates positive trend towards sustainability
+| 地區 | 平均成長率 | 標準差 | 最高成長 | 最低成長 |
+| ---- | ---------- | ------ | -------- | -------- |
+| 歐洲 | 14.61%     | 37.96% | 65.60%   | -22.21%  |
+| 澳洲 | 5.48%      | 41.66% | 42.82%   | -48.62%  |
+| 非洲 | 0.13%      | 18.50% | 25.07%   | -15.07%  |
+| 南美 | -0.51%     | 38.54% | 46.92%   | -44.09%  |
+| 亞洲 | -2.45%     | 13.99% | 15.36%   | -16.55%  |
+| 北美 | -9.05%     | 13.30% | 4.26%    | -26.09%  |
 
-## Predictive Modeling
+## 技術細節
 
-Our predictive analysis focused on forecasting future renewable energy consumption based on historical patterns and multiple features.
-
-### Prediction Target
-
-- Annual renewable energy consumption (in kWh)
-- Forecast horizon: Next year ahead
-
-### Feature Engineering
-
-Key features used in the prediction models:
-
-- Historical energy consumption (previous years)
-- Regional indicators
-- Economic indicators (Income_Level)
-- Household characteristics (Household_Size, Urban_Rural)
-- Energy type distribution
-- Adoption history (Adoption_Year)
-- Subsidy status
-
-### Model Comparison
-
-Three machine learning models were implemented to predict future energy usage patterns:
-
-- Linear Regression [R-squared: 0.5842838684930511]
-- Random Forest [R-squared: 0.7164419031828511]
-- XGBoost [R-squared: 0.6324273918222492]
-
-Key Features Used in Models:
-
-1. Energy Source Types (One-hot encoded)
-
-   - Derived from different renewable energy categories
-   - Includes: Geothermal, Hydro, Solar, Wind
-
-2. Energy Per Household
-
-   - Calculated as: Monthly Usage (kWh) / Household Size
-   - Provides normalized energy consumption metrics
-   - Helps account for household size variations
-
-3. Yearly Change
-   - Measures annual energy usage variations
-   - Captures temporal trends and seasonal patterns
-   - Calculated using year-over-year differences in monthly usage
-
-<img src="./figures/prediction_comparison_plot.png" width="600" alt="Model Prediction Comparison">
-
-After comparative analysis, the Random Forest model demonstrated superior performance in predicting energy usage patterns, showing better accuracy and reliability compared to other models.
-
-### Model Training Methodology
-
-1. Data split:
-
-   - Training data: 2020-2023
-   - Testing data: 2024
-   - Time-based split to simulate real forecasting scenario
-
-2. Model Parameters:
-
-   - Random Forest: n_estimators=200, max_depth=10
-   - XGBoost: n_estimators=200, learning_rate=0.1, max_depth=6
-
-3. Evaluation metrics:
-   - R-squared (R²): Measures the proportion of variance in the dependent variable explained by the model
-   - RMSE (Root Mean Square Error): Measures the standard deviation of prediction errors
-
-## Data Source
-
-- Dataset: Global Renewable Energy Usage 2020-2024
-- Source: [Kaggle Dataset Link](https://www.kaggle.com/datasets/hajraamir21/global-renewable-energy-usage-2020-2024/data)
-- Time Period: 2020-2024
-
-## Methodology
-
-- Data processing and visualization using Python (Pandas, Matplotlib)
+- 分析工具：Python
+- 主要套件：pandas, matplotlib, seaborn, numpy
+- 資料期間：2020-2024
+- 資料來源：[全球再生能源使用數據集](https://www.kaggle.com/datasets/hajraamir21/global-renewable-energy-usage-2020-2024/data)
